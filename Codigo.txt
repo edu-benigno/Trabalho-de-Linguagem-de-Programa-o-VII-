@@ -1,0 +1,101 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        string[] nomes = new string[50];
+        string[] generos = new string[50];
+        string[] contactos = new string[50];
+        string[] prio = new string[50];
+        double[] inicial = new double[50];
+        double[] bonus = new double[50];
+        double[] total = new double[50];
+
+        int i = 0;
+        string resp = "s";
+
+
+        while (resp == "s" && i < 50)
+        {
+            int senha = i + 1;
+            Console.WriteLine("\n--- REGISTO DE CLIENTE (Senha: " + senha + ") ---");
+            Console.Write("Nome completo: ");
+            nomes[i] = Console.ReadLine();
+
+            Console.Write("Genero (M/F): ");
+            generos[i] = Console.ReadLine();
+
+            Console.Write("Contacto telefonico: ");
+            contactos[i] = Console.ReadLine();
+
+            Console.WriteLine("Prioridade de Atendimento:");
+            Console.WriteLine("1 - Normal");
+            Console.WriteLine("2 - Gravida");
+            Console.WriteLine("3 - Idoso");
+            Console.WriteLine("4 - Deficiente");
+            Console.Write("Selecione a opcao (1-4): ");
+            string op = Console.ReadLine();
+
+            if (op == "2") prio[i] = "Gravida";
+            else if (op == "3") prio[i] = "Idoso";
+            else if (op == "4") prio[i] = "Deficiente";
+            else prio[i] = "Normal";
+
+            Console.Write("Valor total das compras (Kz): ");
+            double val = Convert.ToDouble(Console.ReadLine());
+            inicial[i] = val;
+
+            if (val > 100000)
+            {
+                bonus[i] = val * 0.10;
+                total[i] = val - bonus[i];
+            }
+            else
+            {
+                bonus[i] = 0;
+                total[i] = val;
+            }
+            Console.WriteLine("\n--- FATURA DO CLIENTE ---");
+            Console.WriteLine("Senha: " + senha);
+            Console.WriteLine("Nome: " + nomes[i]);
+            Console.WriteLine("Contacto: " + contactos[i]);
+            Console.WriteLine("Atendimento: " + prio[i]);
+            Console.WriteLine("Valor Bruto: " + inicial[i] + " Kz");
+            Console.WriteLine("Bonus Aplicado (10%): " + bonus[i] + " Kz");
+            Console.WriteLine("Total a Pagar: " + total[i] + " Kz");
+            Console.WriteLine("-------------------------");
+
+            i++;
+
+            Console.WriteLine("\n=====================================");
+            Console.WriteLine("      FILA DE ESPERA (EM TEMPO REAL)  ");
+            Console.WriteLine("=====================================");
+
+            for (int j = 0; j < i; j++)
+            {
+                if (prio[j] != "Normal")
+                {
+                    Console.WriteLine("[PRIORITARIO] Senha " + (j + 1) + " - " + nomes[j] + " (" + prio[j] + ")");
+                }
+            }
+
+
+            for (int j = 0; j < i; j++)
+            {
+                if (prio[j] == "Normal")
+                {
+                    Console.WriteLine("[REGULAR] Senha " + (j + 1) + " - " + nomes[j] + " (Normal)");
+                }
+            }
+            Console.WriteLine("=====================================");
+
+            Console.Write("\nRegistar outro cliente? (s/n): ");
+            resp = Console.ReadLine();
+        }
+
+        Console.WriteLine("\nAtendimento de caixa encerrado.");
+    }
+}
+
+
