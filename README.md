@@ -1,2 +1,2 @@
-# Trabalho-de-Linguagem-de-Programa-o-VII-4 ano,2026
+# TRABALHO INDIVIDUAL DE LINGUAGEM DE PROGRAMAÇÃO VII_2026_4 ano
 Sistema de faturação de uma loja de produtos alimentares 
